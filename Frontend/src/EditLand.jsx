@@ -6,8 +6,8 @@ const EditLand = () => {
   const { landId } = useParams();
   const navigate = useNavigate();
   const [landDetails, setLandDetails] = useState({
-    landId: "",
-    ownerName: "",
+    id: "",
+    name: "",
     location: "",
     size: "",
     soilType: "",
@@ -21,7 +21,7 @@ const EditLand = () => {
   useEffect(() => {
     if (landId) {
       const lands = JSON.parse(localStorage.getItem("lands")) || [];
-      const land = lands.find((land) => land.landId === landId);
+      const land = lands.find((land) => land.id === landId);
       if (land) {
         setLandDetails(land);
       }
@@ -40,7 +40,7 @@ const EditLand = () => {
     e.preventDefault();
     const lands = JSON.parse(localStorage.getItem("lands")) || [];
     const updatedLands = lands.map((land) =>
-      land.landId === landId ? { ...land, ...landDetails } : land
+      land.id === landId ? { ...land, ...landDetails } : land
     );
     localStorage.setItem("lands", JSON.stringify(updatedLands));
     navigate(`/land/${landId}`);
@@ -54,8 +54,8 @@ const EditLand = () => {
           Owner Name:
           <input
             type="text"
-            name="ownerName"
-            value={landDetails.ownerName}
+            name="name"
+            value={landDetails.name}
             onChange={handleChange}
           />
         </label>
@@ -74,15 +74,6 @@ const EditLand = () => {
             type="text"
             name="size"
             value={landDetails.size}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Soil Type:
-          <input
-            type="text"
-            name="soilType"
-            value={landDetails.soilType}
             onChange={handleChange}
           />
         </label>

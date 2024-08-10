@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "./Signup.css";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     name: "",
     email: "",
     password: "",
   });
-  const [message, setMessage] = useState("");
 
   const generateRoomNumber = () => {
     // Random 4-digit room number
@@ -44,8 +45,9 @@ const Signup = () => {
     users.push(newUser);
     localStorage.setItem("users", JSON.stringify(users));
 
-    setMessage("User registered successfully!");
     setCredentials({ name: "", email: "", password: "" });
+    navigate("/"); 
+
   };
 
   const onChangeEvt = (e) => {
@@ -94,7 +96,6 @@ const Signup = () => {
         </div>
         <button type="submit" className="submit-button">Submit</button>
       </form>
-      {message && <p className="message">{message}</p>}
     </div>
   );
 };

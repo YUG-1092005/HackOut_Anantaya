@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Investments.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebook,
-  faSquareInstagram,
-} from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faSquareInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
 import { useNavigate } from "react-router-dom";
@@ -14,61 +11,50 @@ const Investments = () => {
   const navigate = useNavigate();
   const [lands, setLands] = useState([]);
 
+  // Define initial investment outside of useEffect
+  const initialInvestment = [
+    {
+      id: uuidv4(),
+      name: "John Patel",
+      location: "Anand, Gujarat",
+      image: "/land_1.png",
+      waterAvailability: "Yes",
+      size: "2 acre",
+      cropHistory: "Low water consuming crop",
+      investmentRequired: 3000,
+      currentInvestments: [],
+    },
+    {
+      id: uuidv4(),
+      name: "Jiyan Patel",
+      location: "Ahmedabad, Gujarat",
+      image: "/land_1.png",
+      size: "3 acre",
+      waterAvailability: "No",
+      cropHistory: "High water consuming crop",
+      investmentRequired: 5000,
+      currentInvestments: [],
+    },
+    {
+      id: uuidv4(),
+      name: "Jiya Shah",
+      location: "Nadiad, Gujarat",
+      image: "/land_2.png",
+      size: "4 acre",
+      waterAvailability: "No",
+      cropHistory: "Moisture area",
+      investmentRequired: 6000,
+      currentInvestments: [],
+    },
+  ];
+
   useEffect(() => {
     // Initialize localStorage with sample data if empty
-    if (!localStorage.getItem("lands")) {
-      const initialInvestment = [
-        {
-          id: uuidv4(),
-          name: "John Patel",
-          profession: "Agriculture Engineer",
-          image: "/land_1.png",
-          email: "abc@gmail.com",
-          description:
-            "An agricultural engineer specializing in precision farming technologies...",
-          experience: 3,
-          expertise: "Agriculture",
-          workingIn: "Building Startup...",
-          ratings: 3,
-        },
-        {
-          id: uuidv4(),
-          name: "Raj Sharma",
-          profession: "CEO",
-          image: "/land_2.png",
-          email: "abc@gmail.com",
-          description:
-            "A startup that specializes in vertical farming and urban agriculture...",
-          experience: 3,
-          expertise: "",
-          workingIn: "FarmBoost",
-          ratings: 4,
-        },
-        {
-          id: uuidv4(),
-          name: "Rajesh",
-          profession: "Engineer",
-          image: "/land_1.png",
-          email: "abc@gmail.com",
-          description:
-            "An engineer with 5 plus years of experience full of passion to teach",
-          experience: 7,
-          expertise: "",
-          workingIn: "FarmPure",
-          ratings: 4,
-        },
-      ];
-
-      localStorage.setItem("lands", JSON.stringify(initialInvestment));
-    }
-  }, []);
-
-  useEffect(() => {
     const storedLands = JSON.parse(localStorage.getItem("lands"));
 
-    if (!storedLands) {
-      localStorage.setItem("lands", JSON.stringify(initialLands));
-      setLands(initialLands);
+    if (!storedLands || storedLands.length === 0) {
+      localStorage.setItem("lands", JSON.stringify(initialInvestment));
+      setLands(initialInvestment);
     } else {
       setLands(storedLands);
     }
@@ -90,11 +76,11 @@ const Investments = () => {
       className="expert-container"
     >
       {lands.map((land) => (
-        <div className="card-container" key={land.landId}>
+        <div className="card-container" key={land.id}>
           <div className="card">
             <div className="card-content">
               <div className="card-image">
-                <img src={land.image} alt={`Image of ${land.ownerName}`} />
+                <img src={land.image} alt={`Image of ${land.name}`} />
               </div>
 
               <div className="social-media">
@@ -107,8 +93,8 @@ const Investments = () => {
               </div>
 
               <div className="name-profession">
-                <span className="name">{land.ownerName}</span>
-                <span className="profession">{land.location}</span>
+                <span className="name">{land.name}</span>
+                <span className="profession">{land.profession}</span>
               </div>
 
               <div className="avg-ratings">
@@ -122,7 +108,7 @@ const Investments = () => {
               <div className="expert-btn">
                 <button
                   className="about-me"
-                  onClick={() => handleNavigate(land.landId)}
+                  onClick={() => handleNavigate(land.id)}
                 >
                   About Land
                 </button>
@@ -134,5 +120,5 @@ const Investments = () => {
     </div>
   );
 };
-// localStorage.clear();
+
 export default Investments;

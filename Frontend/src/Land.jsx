@@ -1,8 +1,8 @@
+
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./Land.css";
 import { Link } from "react-router-dom";
-
 
 const Land = () => {
   const { landId } = useParams();
@@ -18,7 +18,7 @@ const Land = () => {
     if (!storedLands) return null;
 
     const lands = JSON.parse(storedLands);
-    return lands.find((land) => land.landId === landId);
+    return lands.find((land) => land.id === landId);
   };
 
   const handleInvestment = () => {
@@ -26,7 +26,7 @@ const Land = () => {
 
     const storedLands = JSON.parse(localStorage.getItem("lands"));
     const updatedLands = storedLands.map((land) => {
-      if (land.landId === landId) {
+      if (land.id === landId) {
         const newInvestment = {
           amount: parseFloat(investmentAmount),
           type: investmentType,
@@ -54,7 +54,7 @@ const Land = () => {
     }
   }, [landId]);
 
-  const totalInvestments = landDetails?.currentInvestments.reduce((total, investment) => total + investment.amount, 0) || 0;
+  const totalInvestments = landDetails?.currentInvestments?.reduce((total, investment) => total + investment.amount, 0) || 0;
   const remainingInvestment = (landDetails?.investmentRequired || 0) - totalInvestments;
 
   return (
@@ -69,10 +69,10 @@ const Land = () => {
     >
       {landDetails && (
         <div className="land-details-container">
-          <h1>{landDetails.ownerName}'s Land</h1>
+          <h1>{landDetails.name}'s Land</h1>
           <img
             src={landDetails.image}
-            alt={`${landDetails.ownerName}'s Land`}
+            alt={`${landDetails.name}'s Land`}
             className="land-details-image"
           />
           <div className="land-details">
@@ -83,10 +83,6 @@ const Land = () => {
             <div className="details-div">
               <h2>Size: </h2>
               <p>{landDetails.size}</p>
-            </div>
-            <div className="details-div">
-              <h2>Soil Type: </h2>
-              <p>{landDetails.soilType}</p>
             </div>
             <div className="details-div">
               <h2>Water Availability: </h2>
@@ -166,4 +162,3 @@ const Land = () => {
 };
 
 export default Land;
-
