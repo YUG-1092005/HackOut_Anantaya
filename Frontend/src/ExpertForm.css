@@ -1,0 +1,49 @@
+.registration-form-container {
+    margin: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .expert-registration-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .expert-registration-form label {
+    margin-bottom: 1rem;
+    font-size: 20px;
+    margin-top: 2rem;
+  }
+  
+  .expert-registration-form input,
+  .expert-registration-form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    border: 0.3px solid #333;
+    outline: none;
+    font-size: 18px;
+  }
+  
+  .expert-registration-form button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    height: 3rem;
+  }
+  
+  .expert-registration-form button:hover {
+    background-color: #0997ba;
+    
+  }
+  

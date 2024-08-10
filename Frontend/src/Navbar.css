@@ -1,0 +1,96 @@
+.navbar {
+    /* background-color: #a1d6d6; */
+    background-color: #80bbbb;
+    position: sticky;
+    width: 100%;
+    height: 4.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    z-index: 1000; /* Ensure the navbar is above other content */
+  }
+  
+  /* .right-section {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+  
+  .right-section a {
+    margin-right: 10px; 
+  } */
+  
+  .title {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 25px;
+    margin-left: 6px; /* Adjust margin as needed */
+    object-fit: cover;
+  }
+  
+  .open-sidebar {
+    margin-right: 15px;
+  }
+  
+  .links {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Start offscreen */
+    width: 300px; /* Adjust width as needed */
+    height: 100%;
+    background-color: #a5d7d9;
+    z-index: 999; /* Ensure the sidebar is above other content */
+    transition: right 0.5s ease-in-out; /* Smooth transition for sidebar animation */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align links from the top */
+    align-items: flex-start; /* Align links from the left */
+    padding: 20px; /* Add padding for spacing */
+  }
+  
+  .links a {
+    width: 100%;
+    padding: 20px 30px; /*you can adjust spacing between links*/
+    font-size: large;
+    font-weight: 500;
+    text-align: left; 
+    text-decoration: none;
+    color: black;
+    transition: background-color 0.3s ease; 
+  }
+  
+  .links a:hover {
+    background-color: #80bbbb; /* Change background color on hover */
+  }
+  
+  #checkBtn {
+    display: none; /* Hide default checkbox */
+  }
+  
+  #checkBtn:checked ~ .links {
+    right: 0; /* Move sidebar into view when checkbox is checked */
+  }
+  
+  #overlay {
+    display: none; /* Hide overlay by default */
+  }
+  
+  #checkBtn:checked ~ #overlay {
+    display: block; /* Display overlay when checkbox is checked */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 998; /* Ensure overlay is below sidebar */
+  }
+  
+  
+  
